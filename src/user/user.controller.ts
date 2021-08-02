@@ -19,6 +19,7 @@ import { RolesGuard } from "roles.guard";
 import { UserModel } from "./../models";
 import { UserEntity } from "../entities";
 import { UserService } from "./user.service";
+import { ApiBearerAuth } from "@nestjs/swagger";
 
 @Controller("users")
 export class UserController {
@@ -46,6 +47,7 @@ export class UserController {
   @Get()
   @UseGuards(AuthGuard("jwt"), RolesGuard)
   @Roles("admin")
+  @ApiBearerAuth()
   async getAllUsers(): Promise<UserEntity[]> {
     return await this.userService.findAll();
   }

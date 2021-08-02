@@ -1,9 +1,9 @@
 import { IsString, IsNumber, IsEmail } from "class-validator";
 
 export enum IGrant {
-  ADMIN = 0,
-  TEACHER = 1,
-  STUDENT = 2,
+  ADMIN = 1,
+  USER = 100,
+  //STUDENT = 2,
 }
 
 export class UserModel {
