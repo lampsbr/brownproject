@@ -2,11 +2,13 @@ import { BadRequestException, Injectable, InternalServerErrorException } from '@
 import { CreateUserDto } from 'src/users/dto/createUser.dto';
 import { UsersService } from 'src/users/users.service';
 import * as bcrypt from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
     constructor(
-        private readonly usersService: UsersService
+        private readonly usersService: UsersService,
+        private jwtService: JwtService,
     ) { }
 
     public async register(registrationData: CreateUserDto) {
@@ -22,8 +24,15 @@ export class AuthService {
             throw new InternalServerErrorException('Error saving user ' + err);
         }
     }
+    
+      async login(user: any) {
+        const payload = { username: user.username, sub: user.userId };
+        return {
+          access_token: this.jwtService.sign(payload),
+        };
+      }
 
-    public async getAuthenticatedUser(email: string, pw: string) {
+    public async validateUser(email: string, pw: string) {
         try {
             const user = await this.usersService.getByEmail(email);
             await this.verifyPassword(pw, user.password);
