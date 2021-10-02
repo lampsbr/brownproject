@@ -1,3 +1,4 @@
+import UserMenu from "../components/userMenu/UserMenu";
 
 export default function Home() {
   return (
@@ -7,10 +8,7 @@ export default function Home() {
           <li>
             LOGO
           </li>
-          <li>
-            <button className="text-base px-3 py-4 bg-tumbleweed rounded-full">Enter the project!</button>
-            {/* <a href="https://github.com/Icesofty" >Enter the project!</a> */}
-          </li>
+          <UserMenu />
         </ul>
       </nav>
 
