@@ -1,3 +1,4 @@
+import TestReactQuery from "../components/TestReactQuery";
 import UserMenu from "../components/userMenu/UserMenu";
 
 export default function Home() {
@@ -16,6 +17,8 @@ export default function Home() {
         Make peace <br />
         <span className="text-tumbleweed">with poop</span>
       </h1>
+      <br/>
+      <TestReactQuery />
     </section>
   )
 }
