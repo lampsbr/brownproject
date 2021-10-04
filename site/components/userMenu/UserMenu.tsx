@@ -1,4 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
 import UserMenuError from "./UserMenuError";
 import UserMenuLoading from "./UserMenuLoading";
 
@@ -10,6 +11,7 @@ export default function UserMenu() {
         user,
         loginWithRedirect,
         logout,
+        getAccessTokenSilently,
     } = useAuth0();
 
     if (isLoading) {
@@ -24,6 +26,17 @@ export default function UserMenu() {
     if (isAuthenticated) {
         console.log('isAuthenticated!', user);
     }
+
+    // useEffect(() => {
+    //     (async () => {
+    //         try{
+    //             const token = await getAccessTokenSilently({});
+    //             console.log('token', token);
+    //         } catch(e){
+    //             console.error(e);
+    //         }
+    //     })();
+    // }, [isAuthenticated]);
 
     return (<li><div className="w-48 h-16 bg-tumbleweed rounded-full flex items-center justify-between shadow-lg">
         {
