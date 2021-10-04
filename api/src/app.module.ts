@@ -5,8 +5,8 @@ import { AppService } from './app.service';
 import { Poop } from './poop/poop.entity';
 import { PoopModule } from './poop/poop.module';
 import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
 import { User } from './users/user.entity';
+import { AuthzModule } from './authz/authz.module';
 
 @Module({
   imports: [PoopModule, TypeOrmModule.forRoot({
@@ -18,7 +18,7 @@ import { User } from './users/user.entity';
     database: 'brown',
     entities: [Poop, User],
     synchronize: true,
-  }), UsersModule, AuthModule],
+  }), UsersModule, AuthzModule],
   controllers: [AppController],
   providers: [AppService],
 })
