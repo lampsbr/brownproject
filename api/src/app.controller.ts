@@ -2,8 +2,10 @@ import { Controller, Get, Request, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { request } from 'express';
 import { AppService } from './app.service';
-import { Permissions } from './permissions.decorator';
-import { PermissionsGuard } from './permissions.guard';
+import { Permissions } from './authz/permissions.decorator';
+import { PermissionsGuard } from './authz/permissions.guard';
+import { TokenUser } from './authz/user.decorator';
+import { AuthzUser } from './general/auth.user.type';
 
 @Controller()
 export class AppController {
@@ -24,7 +26,8 @@ export class AppController {
   @UseGuards(AuthGuard('jwt'), PermissionsGuard)
   @Permissions('root')
   @Get('rootroute')
-  rootRoute(@Request() req) {
+  rootRoute(@Request() req, @TokenUser() userDec: AuthzUser) {
+    console.log(userDec);
     return 'you have root permission!';
   }
 
