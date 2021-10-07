@@ -31,6 +31,16 @@ export class PoopController {
     }
 
     /**
+     * Returns recent poops from user
+     * @since 20211007
+     */
+    @Get('recent')
+    @UseGuards(AuthGuard('jwt'))
+    async getRecent(@TokenUser() usr: AuthzUser): Promise<Poop[]> {
+        return await this.pooService.getRecent(usr);
+    }
+
+    /**
      * Inserts poop
      * @since 20210903
      */
