@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { User } from 'src/users/user.entity';
+import { TokenUser } from 'src/authz/user.decorator';
+import { AuthzUser } from 'src/general/auth.user.type';
 import { CreatePoopDto } from './dto/createPoop.dto';
 import { Poop } from './poop.entity';
 import { PoopService } from './poop.service';
@@ -15,10 +16,8 @@ export class PoopController {
      */
     @Get()
     @UseGuards(AuthGuard('jwt'))
-    //async getDetails(@GetUser() usr: User): Promise<Poop[]> {
-    async getDetails(): Promise<Poop[]> {
-        // return await this.pooService.getRecent(usr);
-        return await this.pooService.getRecent(new User());
+    async getDetails(@TokenUser() usr: AuthzUser): Promise<Poop[]> {
+        return await this.pooService.getRecent(usr);
     }
 
     /**
@@ -27,10 +26,8 @@ export class PoopController {
      */
     @Get('all')
     @UseGuards(AuthGuard('jwt'))
-    // async getAll(@GetUser() usr: User): Promise<Poop[]> {
-    async getAll(): Promise<Poop[]> {
-        // return await this.pooService.getAll(usr);
-        return await this.pooService.getAll(new User());
+    async getAll(@TokenUser() usr: AuthzUser): Promise<Poop[]> {
+        return await this.pooService.getAll(usr);
     }
 
     /**
@@ -39,10 +36,8 @@ export class PoopController {
      */
     @Post()
     @UseGuards(AuthGuard('jwt'))
-    // async add(@GetUser() usr: User, @Body() data: CreatePoopDto): Promise<Poop> {
-    async add(@Body() data: CreatePoopDto): Promise<Poop> {
-        // return await this.pooService.add(data, usr);
-        return await this.pooService.add(data, new User());
+    async add(@TokenUser() usr: AuthzUser, @Body() data: CreatePoopDto): Promise<Poop> {
+        return await this.pooService.add(data, usr);
     }
 
     /**
@@ -52,10 +47,9 @@ export class PoopController {
     @Delete(':id')
     @UseGuards(AuthGuard('jwt'))
     async delete(
-        // @GetUser() usr: User,
+        @TokenUser() usr: AuthzUser,
         @Param('id', ParseUUIDPipe) id: string): Promise<String> {
-        // return await this.pooService.delete(id, usr);
-        return await this.pooService.delete(id, new User());
+        return await this.pooService.delete(id, usr);
     }
 
 }

@@ -1,5 +1,4 @@
-import { User } from "src/users/user.entity";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Poop {
@@ -15,10 +14,7 @@ export class Poop {
     @Column({nullable: false})
     type: number;
 
+    @Index()
     @Column({ nullable: false })
-    userId: string;
-
-    @ManyToOne(() => User, { eager: false })
-    @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
-    createdBy: User;
+    userEmail: string;
 }
