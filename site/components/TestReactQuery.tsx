@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 
 export default function TestReactQuery(){
     const {isLoading, data } = useQuery('test', async () => {
-        const res = await fetch('http://localhost:3000')
+        const res = await fetch('http://localhost:7000')
         if(!res.ok){
             console.error(res);
             throw new Error('Network response not ok')
