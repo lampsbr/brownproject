@@ -1,6 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import { useQuery } from "react-query";
+import { format } from 'date-fns';
 
 export default function RecentPoops() {
     const [recentData, setRecentData] = useState();
@@ -26,9 +27,12 @@ export default function RecentPoops() {
 
     return (<>
         {isLoading && <span>loading</span>}
-        {!isLoading && (
+        {!isLoading && !error && (
                 <table className="my-0 mx-auto w-10/12 md:w-6/12 lg:w-4/12 xxl:w-3/12 table-fixed" >
                     <thead className="justify-between">
+                        <tr className="bg-tumbleweed">
+                            <th colSpan={2}><span className="text-honeydew">Recent data</span></th>
+                        </tr>
                         <tr className="bg-tumbleweed">
                             <th className="w-1/2">
                                 <span className="text-honeydew">Date</span>
@@ -40,12 +44,13 @@ export default function RecentPoops() {
                     </thead>
                     <tbody className="text-center">
                         {data.map(poo => <tr key={poo.id}>
-                            <td>{poo.ts}</td>
+                            <td>{format(new Date(poo.ts), 'yyyy-MM-dd')}</td>
                             <td>{poo.type}</td>
                         </tr>)}
                     </tbody>
                 </table>
         )}
+        {!isLoading && error && <span>error fetching recent poops</span>}
     </>);
 
 

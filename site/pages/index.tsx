@@ -1,6 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import RecentPoops from "../components/recent/RecentPoops";
 import UserMenu from "../components/userMenu/UserMenu";
+import Image from 'next/image';
+import logo from '../public/brownie.png';
 
 export default function Home() {
   const {
@@ -11,7 +13,7 @@ export default function Home() {
       <nav>
         <ul className="flex justify-between text-xl py-8 px-8 md:px-48 ">
           <li>
-            LOGO
+            <Image  src={logo} width="50" height="65" />
           </li>
           <UserMenu />
         </ul>
