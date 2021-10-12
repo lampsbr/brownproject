@@ -56,7 +56,7 @@ export default function RecentPoops() {
                     </tr>)}
                 </tbody>
                 <tfoot>
-                    <tr className="bg-tumbleweed">
+                    <tr className="bg-tumbleweed text-honeydew">
                         <td colSpan={3} className="p-1"><RecentsVeredict types={data.map(p => p.type)} /></td>
                     </tr>
                 </tfoot>
