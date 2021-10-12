@@ -29,30 +29,32 @@ export default function RecentPoops() {
     return (<>
         {isLoading && <span>loading</span>}
         {!isLoading && !error && (
-                <table className="my-0 mx-auto w-10/12 md:w-6/12 lg:w-4/12 xxl:w-3/12 table-fixed" >
-                    <thead className="justify-between">
-                        <tr className="bg-tumbleweed">
-                            <th colSpan={2}><span className="text-honeydew">Recent data</span></th>
-                        </tr>
-                        <tr className="bg-tumbleweed">
-                            <th className="w-1/2">
-                                <span className="text-honeydew">Date</span>
-                            </th>
-                            <th className="w-1/2">
-                                <span className="text-honeydew">Type</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody className="text-center">
-                        {data.map((poo, index) => <tr key={poo.id} className="border-b-0">
-                            <td>{format(new Date(poo.ts), 'yyyy-MM-dd')}</td>
-                            <td className="h-4 p-0" >
-                                {poo.type}
-                                <PoopColor types={data.map(p => p.type)} index={index} />
-                                </td>
-                        </tr>)}
-                    </tbody>
-                </table>
+            <table className="my-0 mx-auto w-10/12 md:w-6/12 lg:w-4/12 xxl:w-3/12 table-fixed" >
+                <thead className="justify-between">
+                    <tr className="bg-tumbleweed">
+                        <th colSpan={3}><span className="text-honeydew text-lg">Recent data</span></th>
+                    </tr>
+                    <tr className="bg-tumbleweed">
+                        <th className="w-1/2">
+                            <span className="text-honeydew">Date</span>
+                        </th>
+                        <th className="w-1/2" colSpan={2}>
+                            <span className="text-honeydew">Type</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody className="text-center">
+                    {data.map((poo, index) => <tr key={poo.id} className={`border-b-0 ${index % 2 !== 0 ? 'bg-tumbleweed-light' : ''}`}>
+                        <td>{format(new Date(poo.ts), 'yyyy-MM-dd')}</td>
+                        <td className="text-right">
+                            {poo.type}
+                        </td>
+                        <td className="h-4 p-0" >
+                            <PoopColor types={data.map(p => p.type)} index={index} />
+                        </td>
+                    </tr>)}
+                </tbody>
+            </table>
         )}
         {!isLoading && error && <span>error fetching recent poops</span>}
     </>);

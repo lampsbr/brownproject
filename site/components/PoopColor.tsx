@@ -30,5 +30,8 @@ export default function PoopColor(props: PoopColorProps) {
         setGradient(grad);
     }, []);
 
-    return <div className={`inline-block w-8 h-full ${props.index === 0 ? 'mt-3' : ''} ${gradient}`} ></div>;
+    return <>
+    <div className={`inline-block w-8 h-full ${props.index === 0 ? 'mt-3' : ''} ${gradient}`} >
+        </div>
+    </>;
 }
