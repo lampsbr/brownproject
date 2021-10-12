@@ -29,7 +29,7 @@ export default function RecentPoops() {
     return (<>
         {isLoading && <span>loading</span>}
         {!isLoading && !error && (
-            <table className="my-0 mx-auto w-10/12 md:w-6/12 lg:w-4/12 xxl:w-3/12 table-fixed" >
+            <table className="my-0 mx-auto w-10/12 md:w-6/12 lg:w-4/12 xxl:w-3/12 table-fixed shadow-lg" >
                 <thead className="justify-between">
                     <tr className="bg-tumbleweed">
                         <th colSpan={3}><span className="text-honeydew text-lg">Recent data</span></th>
