@@ -5,6 +5,7 @@ import Router from "next/router";
 import { Auth0Provider } from '@auth0/auth0-react'
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import MainLayout from '../layouts/mainLayout';
 
 const onRedirectCallback = (appState) => {
   Router.replace(appState?.returnTo || "/");
@@ -26,7 +27,9 @@ function MyApp({ Component, pageProps }) {
           <title>The Brown Project</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Component {...pageProps} />
+        <MainLayout>
+          <Component {...pageProps} />
+        </MainLayout>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </Auth0Provider>
