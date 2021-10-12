@@ -15,7 +15,7 @@ export default function Home() {
         <ul className="flex justify-between text-xl py-8 px-8 md:px-48 ">
           <li>
             <Link href="/">
-              <Image src={logo} width="50" height="65" className="cursor-pointer"/>
+              <Image src={logo} width="50" height="65" className="cursor-pointer" />
             </Link>
           </li>
           <UserMenu />
@@ -33,7 +33,12 @@ export default function Home() {
           <RecentPoops />
         )}
       </div>
-      <br />
+
+      <div className="bg-tumbleweed h-20 w-screen text-center">
+        <Link href="/addPoop">
+          <button className="rounded-full mt-2 h-16 px-3 bg-darkliver text-honeydew shadow-lg">+ add poop</button>
+        </Link>
+      </div>
     </section>
   )
 }
