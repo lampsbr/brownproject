@@ -2,7 +2,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { format } from 'date-fns';
-import PoopColor from "../PoopColor";
+import PoopColor from "./PoopColor";
+import RecentsVeredict from "./RecentsVeredict";
 
 export default function RecentPoops() {
     const [recentData, setRecentData] = useState();
@@ -54,6 +55,11 @@ export default function RecentPoops() {
                         </td>
                     </tr>)}
                 </tbody>
+                <tfoot>
+                    <tr className="bg-tumbleweed">
+                        <td colSpan={3} className="p-1"><RecentsVeredict types={data.map(p => p.type)} /></td>
+                    </tr>
+                </tfoot>
             </table>
         )}
         {!isLoading && error && <span>error fetching recent poops</span>}
