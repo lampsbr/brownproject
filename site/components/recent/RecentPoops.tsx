@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { format } from 'date-fns';
+import PoopColor from "../PoopColor";
 
 export default function RecentPoops() {
     const [recentData, setRecentData] = useState();
@@ -43,9 +44,12 @@ export default function RecentPoops() {
                         </tr>
                     </thead>
                     <tbody className="text-center">
-                        {data.map(poo => <tr key={poo.id}>
+                        {data.map((poo, index) => <tr key={poo.id} className="border-b-0">
                             <td>{format(new Date(poo.ts), 'yyyy-MM-dd')}</td>
-                            <td>{poo.type}</td>
+                            <td className="h-4 p-0" >
+                                {poo.type}
+                                <PoopColor types={data.map(p => p.type)} index={index} />
+                                </td>
                         </tr>)}
                     </tbody>
                 </table>
