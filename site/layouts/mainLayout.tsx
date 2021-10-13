@@ -26,7 +26,7 @@ export default function MainLayout({ children }) {
         </ul>
       </nav>
 
-      <div className="my-auto mx-auto md:mx-48 ">
+      <div className="my-auto mx-auto sm:mx-12 md:mx-24 lg:mx-48 xl:mx-64 ">
         {children}
       </div>
 

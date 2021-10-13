@@ -1,11 +1,11 @@
 module.exports = {
   mode: 'jit',
   purge: {
-    content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+    content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', , './layouts/**/*.{js,ts,jsx,tsx}'],
     safelist: ['from-red-600', 'via-red-600', 'to-red-600',
       'from-red-400', 'via-red-400', 'to-red-400',
       'from-green-400', 'via-green-400', 'to-green-400',
-      'from-yellow-300', 'via-yellow-300', 'to-yellow-300'
+      'from-yellow-300', 'via-yellow-300', 'to-yellow-300',
     ],
   },
   darkMode: false, // or 'media' or 'class'
