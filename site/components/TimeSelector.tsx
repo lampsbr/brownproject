@@ -29,9 +29,9 @@ export default function TimeSelector(props: TimeProps) {
                 dateFormat="h:mm aa"
             />
             <div className="w-10/12 bg-darkliver rounded-2xl mt-2 flex flex-col mx-auto border border-darkliver">
-                <button className={`text-honeydew hover:bg-tumbleweed  rounded-t-2xl`} onClick={(e) => { e.preventDefault(); setDay(0); }}>Today</button>
-                <button className={`text-honeydew hover:bg-tumbleweed `} onClick={(e) => { e.preventDefault(); setDay(-1); }}>Yesterday</button>
-                <button className={`text-honeydew hover:bg-tumbleweed rounded-b-2xl`} onClick={(e) => { e.preventDefault(); setDay(-2); }}>The day before</button>
+                <button className={`text-honeydew hover:bg-tumbleweed ${currentDay === 0 ? 'bg-tumbleweed': ''}  rounded-t-2xl`} onClick={(e) => { e.preventDefault(); setDay(0); }}>Today</button>
+                <button className={`text-honeydew hover:bg-tumbleweed ${currentDay === -1 ? 'bg-tumbleweed': ''} `} onClick={(e) => { e.preventDefault(); setDay(-1); }}>Yesterday</button>
+                <button className={`text-honeydew hover:bg-tumbleweed ${currentDay === -2 ? 'bg-tumbleweed': ''} rounded-b-2xl`} onClick={(e) => { e.preventDefault(); setDay(-2); }}>The day before</button>
             </div>
         </div>
     );
