@@ -54,7 +54,7 @@ export default function PoopTypeDescription(props: PoopTypeDescriptionProps) {
         }
     }, [props.type]);
     return (<div className="h-full flex flex-col items-center place-content-between">
-        <span>{title}</span>
+        <span className="h-8">{title}</span>
         <div className="relative w-40 h-40">
 
             {imgSrc &&
@@ -66,6 +66,6 @@ export default function PoopTypeDescription(props: PoopTypeDescriptionProps) {
                     loading="eager" />
             }
         </div>
-        <span>{description}</span>
+        <span className="h-12">{description}</span>
     </div>);
 }

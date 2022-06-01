@@ -44,7 +44,7 @@ export default function AddPoop() {
                     </div>
                     <div className="w-full p-4"><PoopTypeDescription type={selectedType} /></div>
                 </div>
-                <div id="timestampSelector" className="w-full md:w-2/5 border border-honeydew bg-tumbleweed flex justify-between ">
+                <div id="timestampSelector" className="w-full md:w-2/5 border border-honeydew bg-tumbleweed flex justify-between py-4">
                     <div className="m-auto">
                         <TimeSelector time={selectedTS} setTime={setSelectedTS} />
                     </div>
