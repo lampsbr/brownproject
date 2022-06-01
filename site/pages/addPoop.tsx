@@ -1,5 +1,8 @@
 import { useState } from "react";
 import PoopTypeDescription from "../components/poop/PoopTypeDescription";
+import TimeSelector from "../components/TimeSelector";
+import "react-datepicker/dist/react-datepicker.css";
+import Link from 'next/link';
 
 /**
  * let's try a 60/40 layout. Bigger area for poop type, smaller for datetime.
@@ -7,6 +10,8 @@ import PoopTypeDescription from "../components/poop/PoopTypeDescription";
  */
 export default function AddPoop() {
     const [selectedType, setSelectedType] = useState<number>();
+    const [selectedTS, setSelectedTS] = useState<Date>(new Date());
+
     const [t1Class, setT1Class] = useState<string>('');
     const [t2Class, setT2Class] = useState<string>('');
     const [t3Class, setT3Class] = useState<string>('');
@@ -14,6 +19,18 @@ export default function AddPoop() {
     const [t5Class, setT5Class] = useState<string>('');
     const [t6Class, setT6Class] = useState<string>('');
     const [t7Class, setT7Class] = useState<string>('');
+
+    /**
+     * Saves poop.
+     * @since 20220423
+     */
+    const savePoop = () => {
+        //lock screen
+        // check data
+        // perform request
+        //toast
+        //unlock screen
+    }
 
     const setType = (t: number) => {
         setSelectedType(t);
@@ -67,9 +84,21 @@ export default function AddPoop() {
                     </div>
                     <div className="w-full p-4"><PoopTypeDescription type={selectedType} /></div>
                 </div>
-                <div id="timestampSelector" className="w-full md:w-2/5 border border-honeydew bg-tumbleweed">
+                <div id="timestampSelector" className="w-full md:w-2/5 border border-honeydew bg-tumbleweed flex justify-between ">
+                    <div className="m-auto">
+                        <TimeSelector time={selectedTS} setTime={setSelectedTS} />
+                    </div>
                 </div>
             </div>
+            <div className="flex justify-center">
+                <button
+                    className="rounded-full mt-2 h-16 px-5 bg-darkliver text-honeydew shadow-lg"
+                    onClick={(e) => { e.preventDefault(); savePoop(); }}
+                >
+                    Save
+                </button>
+            </div>
+
         </>
     );
 }
