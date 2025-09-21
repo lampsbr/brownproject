@@ -12,12 +12,14 @@ import { createServerRootRoute } from '@tanstack/react-start/server'
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UserIndexRouteImport } from './routes/user/index'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo.tanstack-query'
 import { Route as DemoTableRouteImport } from './routes/demo.table'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo.start.server-funcs'
 import { Route as DemoStartApiRequestRouteImport } from './routes/demo.start.api-request'
 import { Route as DemoFormSimpleRouteImport } from './routes/demo.form.simple'
 import { Route as DemoFormAddressRouteImport } from './routes/demo.form.address'
+import { ServerRoute as ApiUsersServerRouteImport } from './routes/api.users'
 import { ServerRoute as ApiDemoTqTodosServerRouteImport } from './routes/api.demo-tq-todos'
 import { ServerRoute as ApiDemoNamesServerRouteImport } from './routes/api.demo-names'
 
@@ -26,6 +28,11 @@ const rootServerRouteImport = createServerRootRoute()
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UserIndexRoute = UserIndexRouteImport.update({
+  id: '/user/',
+  path: '/user/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
@@ -58,6 +65,11 @@ const DemoFormAddressRoute = DemoFormAddressRouteImport.update({
   path: '/demo/form/address',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiUsersServerRoute = ApiUsersServerRouteImport.update({
+  id: '/api/users',
+  path: '/api/users',
+  getParentRoute: () => rootServerRouteImport,
+} as any)
 const ApiDemoTqTodosServerRoute = ApiDemoTqTodosServerRouteImport.update({
   id: '/api/demo-tq-todos',
   path: '/api/demo-tq-todos',
@@ -73,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/user': typeof UserIndexRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
@@ -82,6 +95,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/user': typeof UserIndexRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
@@ -92,6 +106,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/demo/table': typeof DemoTableRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/user/': typeof UserIndexRoute
   '/demo/form/address': typeof DemoFormAddressRoute
   '/demo/form/simple': typeof DemoFormSimpleRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
@@ -103,6 +118,7 @@ export interface FileRouteTypes {
     | '/'
     | '/demo/table'
     | '/demo/tanstack-query'
+    | '/user'
     | '/demo/form/address'
     | '/demo/form/simple'
     | '/demo/start/api-request'
@@ -112,6 +128,7 @@ export interface FileRouteTypes {
     | '/'
     | '/demo/table'
     | '/demo/tanstack-query'
+    | '/user'
     | '/demo/form/address'
     | '/demo/form/simple'
     | '/demo/start/api-request'
@@ -121,6 +138,7 @@ export interface FileRouteTypes {
     | '/'
     | '/demo/table'
     | '/demo/tanstack-query'
+    | '/user/'
     | '/demo/form/address'
     | '/demo/form/simple'
     | '/demo/start/api-request'
@@ -131,6 +149,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DemoTableRoute: typeof DemoTableRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
+  UserIndexRoute: typeof UserIndexRoute
   DemoFormAddressRoute: typeof DemoFormAddressRoute
   DemoFormSimpleRoute: typeof DemoFormSimpleRoute
   DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
@@ -139,27 +158,31 @@ export interface RootRouteChildren {
 export interface FileServerRoutesByFullPath {
   '/api/demo-names': typeof ApiDemoNamesServerRoute
   '/api/demo-tq-todos': typeof ApiDemoTqTodosServerRoute
+  '/api/users': typeof ApiUsersServerRoute
 }
 export interface FileServerRoutesByTo {
   '/api/demo-names': typeof ApiDemoNamesServerRoute
   '/api/demo-tq-todos': typeof ApiDemoTqTodosServerRoute
+  '/api/users': typeof ApiUsersServerRoute
 }
 export interface FileServerRoutesById {
   __root__: typeof rootServerRouteImport
   '/api/demo-names': typeof ApiDemoNamesServerRoute
   '/api/demo-tq-todos': typeof ApiDemoTqTodosServerRoute
+  '/api/users': typeof ApiUsersServerRoute
 }
 export interface FileServerRouteTypes {
   fileServerRoutesByFullPath: FileServerRoutesByFullPath
-  fullPaths: '/api/demo-names' | '/api/demo-tq-todos'
+  fullPaths: '/api/demo-names' | '/api/demo-tq-todos' | '/api/users'
   fileServerRoutesByTo: FileServerRoutesByTo
-  to: '/api/demo-names' | '/api/demo-tq-todos'
-  id: '__root__' | '/api/demo-names' | '/api/demo-tq-todos'
+  to: '/api/demo-names' | '/api/demo-tq-todos' | '/api/users'
+  id: '__root__' | '/api/demo-names' | '/api/demo-tq-todos' | '/api/users'
   fileServerRoutesById: FileServerRoutesById
 }
 export interface RootServerRouteChildren {
   ApiDemoNamesServerRoute: typeof ApiDemoNamesServerRoute
   ApiDemoTqTodosServerRoute: typeof ApiDemoTqTodosServerRoute
+  ApiUsersServerRoute: typeof ApiUsersServerRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -169,6 +192,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/user/': {
+      id: '/user/'
+      path: '/user'
+      fullPath: '/user'
+      preLoaderRoute: typeof UserIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo/tanstack-query': {
@@ -217,6 +247,13 @@ declare module '@tanstack/react-router' {
 }
 declare module '@tanstack/react-start/server' {
   interface ServerFileRoutesByPath {
+    '/api/users': {
+      id: '/api/users'
+      path: '/api/users'
+      fullPath: '/api/users'
+      preLoaderRoute: typeof ApiUsersServerRouteImport
+      parentRoute: typeof rootServerRouteImport
+    }
     '/api/demo-tq-todos': {
       id: '/api/demo-tq-todos'
       path: '/api/demo-tq-todos'
@@ -238,6 +275,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DemoTableRoute: DemoTableRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
+  UserIndexRoute: UserIndexRoute,
   DemoFormAddressRoute: DemoFormAddressRoute,
   DemoFormSimpleRoute: DemoFormSimpleRoute,
   DemoStartApiRequestRoute: DemoStartApiRequestRoute,
@@ -249,6 +287,7 @@ export const routeTree = rootRouteImport
 const rootServerRouteChildren: RootServerRouteChildren = {
   ApiDemoNamesServerRoute: ApiDemoNamesServerRoute,
   ApiDemoTqTodosServerRoute: ApiDemoTqTodosServerRoute,
+  ApiUsersServerRoute: ApiUsersServerRoute,
 }
 export const serverRouteTree = rootServerRouteImport
   ._addFileChildren(rootServerRouteChildren)
