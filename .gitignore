@@ -1,6 +1,12 @@
-
-node_modules/
-dist/
-coverage/
+node_modules
 .DS_Store
-pgdata
+dist
+dist-ssr
+*.local
+count.txt
+.env
+.nitro
+.tanstack
+.output
+.vinxi
+todos.json
