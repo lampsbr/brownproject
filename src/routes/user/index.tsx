@@ -12,8 +12,6 @@ import {
 } from '@tanstack/react-table'
 import { compareItems, rankItem } from '@tanstack/match-sorter-utils'
 
-//import { getUsers } from '../../data/get-users'
-
 import type {
   Column,
   ColumnDef,

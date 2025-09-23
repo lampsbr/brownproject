@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/libsql';
 import { eq } from 'drizzle-orm';
-import { usersTable } from './drizzle.schema';
+import { usersTable } from '@/drizzle/drizzle.schema';
 
 const db = drizzle(process.env.DB_FILE_NAME!);
 

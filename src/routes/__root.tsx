@@ -5,14 +5,12 @@ import {
 } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanstackDevtools } from '@tanstack/react-devtools'
-
-import Header from '../components/Header'
-
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
-
 import appCss from '../styles.css?url'
-
 import type { QueryClient } from '@tanstack/react-query'
+
+import { NotFoundComponent } from '@/src/components/NotFound'
+import Header from '@/src/components/Header'
 
 interface MyRouterContext {
   queryClient: QueryClient
@@ -41,7 +39,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
   }),
 
   shellComponent: RootDocument,
-  notFoundComponent: () => import('./NotFound').then(mod => <mod.default />),
+  notFoundComponent: NotFoundComponent,
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {

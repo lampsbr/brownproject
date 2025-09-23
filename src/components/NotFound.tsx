@@ -1,6 +1,4 @@
-import React from "react";
-
-export default function NotFound() {
+export function NotFoundComponent() {
   return (
     <div style={{ textAlign: "center", marginTop: "2rem" }}>
       <h1>404 - Page Not Found</h1>

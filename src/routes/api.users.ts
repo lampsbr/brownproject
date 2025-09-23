@@ -1,6 +1,6 @@
-import { db } from "../data/drizzle-connection";
-import { usersTable } from "../data/drizzle.schema";
 import { createServerFileRoute } from '@tanstack/react-start/server'
+import { db } from "@/src/drizzle-connection";
+import { usersTable } from "@/drizzle/drizzle.schema";
 
 export const ServerRoute = createServerFileRoute('/api/users').methods({
   GET: async (req) => {
